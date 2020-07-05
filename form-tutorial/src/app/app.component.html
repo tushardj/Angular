@@ -1,25 +1,40 @@
-<div class="container-fluid">
-    <h2>Regestration Form</h2>
-    <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
-        <div class="form-group">
-            <label>Username</label>
-            <input [class.is-invalid]="userName.invalid && userName.touched" formControlName="userName" type="text" class="form-control">
-            <div *ngIf="userName.invalid && userName.touched">
-                <small *ngIf="userName.errors?.required" class="text-danger">User Name is Required</small>
-                <small *ngIf="userName.errors?.minlength" class="text-danger">Minimum Length must be 5</small>
-                <small *ngIf="userName.errors?.forbiddenName" class="text-danger">User Name not Allowed</small>
-            </div>
-            <!-- <small [class.d-none]="userName.valid || userName.untouched" class="text-danger">User Name is Required</small> -->
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">Regestration Form</div>
+                <div class="card-body">
+                    <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()" class="form-horizontal">
+                        <div class="form-group">
+                        <div class="cols-sm-10">
+                            <label class="cols-sm-2 control-label">Username</label>
+                            <input [class.is-invalid]="userName.invalid && userName.touched" formControlName="userName" type="text" class="form-control">
+                            <div *ngIf="userName.invalid && userName.touched">
+                                <small *ngIf="userName.errors?.required" class="text-danger">User Name is Required</small>
+                                <small *ngIf="userName.errors?.minlength" class="text-danger">Minimum Length must be 5</small>
+                                <small *ngIf="userName.errors?.forbiddenName" class="text-danger">User Name not Allowed</small>
+                            </div>
+                            <!-- <small [class.d-none]="userName.valid || userName.untouched" class="text-danger">User Name is Required</small> -->
+                        </div>
+                        </div>
+                        <div class="form-group">
+                        <div class="cols-sm-10">
+                            <label class="cols-sm-2 control-label">Password</label>
+                            <input formControlName="password" type="password" class="form-control">
+                        </div>
+                    </div>
+                        <div class="form-group">
+                        <div class="cols-sm-10">
+                            <label class="cols-sm-2 control-label">Confirm Password</label>
+                            <input [class.is-invalid]="registrationForm.errors?.misMatch" formControlName="confirmPassword" type="password" class="form-control">
+                            <small *ngIf="registrationForm.errors?.misMatch" class="text-danger">Password Do not Match</small>
+                        </div>
+                        </div>
+
+                        <div class="form-group">
+                            <!-- Button -->
+                            <button [disabled]="!registrationForm.valid" class="btn btn-primary" type="submit">Register</button>
+                        </div>
+                        </form>
         </div>
-        <div class="form-group">
-            <label>Password</label>
-            <input formControlName="password" type="password" class="form-control">
         </div>
-        <div class="form-group">
-            <label>Confirm Password</label>
-            <input [class.is-invalid]="registrationForm.errors?.misMatch" formControlName="confirmPassword" type="password" class="form-control">
-            <small *ngIf="registrationForm.errors?.misMatch" class="text-danger">Password Do not Match</small>
-        </div>
-        <button [disabled]="!registrationForm.valid" class="btn btn-primary" type="submit">Register</button>
-    </form>
-</div>
